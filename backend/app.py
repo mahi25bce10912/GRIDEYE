@@ -10,10 +10,8 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 
-# Configure CORS explicitly to accept traffic from React Vite frontend
 CORS(app, resources={r"/api/*": {"origins": ["http://localhost:5173", "http://127.0.0.1:5173"]}})
 
-# Global In-Memory Store for Live Map Incidents
 active_incidents = [
     {
         "id": 1,
@@ -30,7 +28,7 @@ active_incidents = [
 MODEL_PATH = "catboost_traffic_model.pkl"
 model_bundle = None
 
-# Attempt to load model bundle safely
+
 if os.path.exists(MODEL_PATH):
     try:
         with open(MODEL_PATH, "rb") as f:
