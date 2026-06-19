@@ -5,13 +5,12 @@ function DeploymentHub() {
 
   useEffect(() => {
     const loadLogs = () => {
-      // ⚡ Reads directly from In-Memory global object
       const data = window.hub_events_list || [];
       setEvents([...data]);
     };
 
     loadLogs();
-    const interval = setInterval(loadLogs, 1000); // Polls every second for instant update
+    const interval = setInterval(loadLogs, 1000); 
     return () => clearInterval(interval);
   }, []);
 
@@ -34,7 +33,6 @@ function DeploymentHub() {
     const matchedCorridor = mainCorridors.find(c => 
       ev.location?.toLowerCase().includes(c.toLowerCase()) || 
       ev.name?.toLowerCase().includes(c.toLowerCase()) ||
-      // ⚡ Smart addition: maps "ORR" selections directly to "Outer Ring Road" chart
       (c === 'Outer Ring Road' && ev.name?.toLowerCase().includes('orr'))
     );
     

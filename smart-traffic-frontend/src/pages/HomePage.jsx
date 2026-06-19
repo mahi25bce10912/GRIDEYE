@@ -182,7 +182,6 @@ function HomePage({ setIncidents }) {
           setIncidents(prev => [...prev, newIncident]);
         }
 
-        // ⚡ CHANGE HERE: In-Memory Window Array updates directly
         if (!window.hub_events_list) {
           window.hub_events_list = [];
         }
