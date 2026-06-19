@@ -1,0 +1,45 @@
+/* file name: src/index.css */
+@import "tailwindcss";
+
+@layer utilities {
+  @keyframes border-glow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .animate-neon-border {
+    position: relative;
+    overflow: hidden;
+    background: #090d16; 
+    border-radius: 0.75rem;
+    z-index: 1;
+  }
+
+  .animate-neon-border::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+      transparent, 
+      #22d3ee, 
+      transparent, 
+      transparent, 
+      #f97316, 
+      transparent
+    );
+    animation: border-glow 4s linear infinite;
+    z-index: -2;
+  }
+
+  .animate-neon-border::after {
+    content: '';
+    position: absolute;
+    inset: 2px; 
+    background: #020617; 
+    border-radius: 10px;
+    z-index: -1;
+  }
+}
