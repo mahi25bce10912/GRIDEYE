@@ -1,7 +1,7 @@
 # GRIDEYE
 GRIDEYE is an AI-powered traffic intelligence platform that predicts event-driven congestion, estimates traffic impact, and recommends optimal resource deployment, barricading, and diversion strategies using machine learning and geospatial analytics.
 
-# 🚦 VisionGrid
+# 🚦 Our team (VisionGrid) presenting
 ### AI-Powered Event Congestion Forecasting & Traffic Response System
 
 ![Hackathon](https://img.shields.io/badge/Hackathon-Gridlock%20Hackathon%202.0-blue)
