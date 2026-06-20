@@ -1,4 +1,3 @@
-from math import radians, sin, cos, sqrt, atan2
 import os
 import pickle
 import math
