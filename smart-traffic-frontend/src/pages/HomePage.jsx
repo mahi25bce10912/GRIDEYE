@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Circle, useMap, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
+// Dynamic production backend URL linking directly to Railway
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://grideye-production.up.railway.app';
 const BANGALORE_BOUNDS = [[12.7500, 77.3500], [13.1500, 77.8500]];
 
 const getPriorityColor = (level) => {
@@ -154,12 +156,13 @@ function HomePage({ setIncidents }) {
     }
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/predict', {
+      // Direct integration of fetch connection pointing to Railway/Vercel config endpoints
+      const response = await fetch(`${API_BASE_URL}/api/predict`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload) 
+        body: JSON.stringify(payload)
       });
-      
+
       if (!response.ok) {
         throw new Error(`Inference Core responded with status ${response.status}`);
       }
@@ -212,7 +215,7 @@ function HomePage({ setIncidents }) {
       }
     } catch (err) {
       console.error("Inference Engine Connection Failed:", err);
-      setNetworkError("ASTRAM CORE OFFLINE: Local inference server at http://127.0.0.1:8000 is unreachable. Please run 'python app.py' in your backend terminal.");
+      setNetworkError(`ASTRAM CORE OFFLINE: Production inference server at ${API_BASE_URL} is unreachable.`);
     } finally {
       setIsProcessing(false);
     }
