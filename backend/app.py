@@ -5,12 +5,15 @@ import math
 import numpy as np
 import pandas as pd
 from datetime import datetime
-from flask import Flask, request, jsonify
+from Flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
-
-CORS(app, resources={r"/api/*": {"origins": "*"}})
+CORS(app, resources={r"/*": {
+    "origins": "*",
+    "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    "allow_headers": ["Content-Type", "Authorization", "Accept"]
+}})
 
 active_incidents = [
     {
@@ -27,7 +30,6 @@ active_incidents = [
 
 MODEL_PATH = "catboost_traffic_model.pkl"
 model_bundle = None
-
 
 if os.path.exists(MODEL_PATH):
     try:
@@ -187,7 +189,7 @@ def predict():
         road_closure_probability = min(int(congestion_score * 0.8 * pm), 100)
         calculated_radius = round((distance_km * 0.4) + (congestion_score / 50.0), 2)
         
-        # 🚨 Dynamic Resource Allocation formulas
+        # Dynamic Resource Allocation formulas
         required_officers = int(0 + congestion_score * 0.2)
         required_barricades = max(2, int(congestion_score / 8))
         
@@ -291,4 +293,7 @@ def server_error(error):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000, debug=True)
+    # CRITICAL RAILWAY DEPLOYMENT PORT BINDING:
+    # Always pull dynamic ports from the environment, falling back to 8000 for local runs.
+    port = int(os.environ.get("PORT", 8000))
+    app.run(host="0.0.0.0", port=port, debug=True)
