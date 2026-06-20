@@ -185,10 +185,19 @@ based on predicted traffic impact.
 
 ---
 
-## 🛣 Road closure System
+## 🛣 Road Closure Intelligence System
 
-Suggests:
+Analyzes the impact of road closures on traffic flow and congestion severity.
 
+Provides:
+
+- Road Closure Risk Assessment
+- Congestion Impact Estimation
+- Alternative Route Recommendations
+- Traffic Diversion Planning
+- Affected Area Identification
+
+This module helps traffic authorities proactively manage disruptions caused by planned and unplanned road closures, minimizing congestion and improving traffic movement.
 
 ---
 
