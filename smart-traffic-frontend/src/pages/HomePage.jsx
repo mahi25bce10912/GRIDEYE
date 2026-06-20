@@ -215,7 +215,7 @@ function HomePage({ setIncidents }) {
       }
     } catch (err) {
       console.error("Inference Engine Connection Failed:", err);
-      setNetworkError(`ASTRAM CORE OFFLINE: Production inference server at ${API_BASE_URL} is unreachable.`);
+      setNetworkError(`GRID EYE CORE OFFLINE: Production inference server at ${API_BASE_URL} is unreachable.`);
     } finally {
       setIsProcessing(false);
     }
