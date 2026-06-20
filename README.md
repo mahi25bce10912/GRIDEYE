@@ -14,7 +14,7 @@ GRIDEYE is an AI-powered traffic intelligence platform that predicts event-drive
 
 ## 📌 Overview
 
-VisionGrid is an AI-powered traffic intelligence and decision-support platform designed to tackle event-driven traffic congestion in urban road networks.
+Grideye is an AI-powered traffic intelligence and decision-support platform designed to tackle event-driven traffic congestion in urban road networks.
 
 The system analyzes traffic incidents using Machine Learning, Geospatial Analytics, and Predictive Intelligence to forecast congestion severity, estimate traffic impact, recommend optimal resource deployment, and support proactive traffic management.
 
