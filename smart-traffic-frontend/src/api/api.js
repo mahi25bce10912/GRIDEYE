@@ -1,5 +1,5 @@
 // Vercel par environment variable "VITE_API_URL" set karein: https://grideye-production.up.railway.app
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://grideye-production.up.railway.app';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://grideye-production-a323.up.railway.app';
 
 export const getPrediction = async (payload) => {
   try {
