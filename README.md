@@ -102,8 +102,6 @@ Score Forecast Allocation Planning
  Operational Decision Support
 ```
 
----
-
 # 🧠 Machine Learning Pipeline
 
 ### Model
@@ -123,7 +121,6 @@ The model utilizes:
 - Corridor
 - Zone
 - GPS Coordinates
-- Road Closure Status
 - Distance Analysis
 - Peak Hour Indicators
 - Day of Week
@@ -188,15 +185,10 @@ based on predicted traffic impact.
 
 ---
 
-## 🛣 Diversion Recommendation System
+## 🛣 Road closure System
 
 Suggests:
 
-- No Diversion Required
-- Recommended Diversion
-- Mandatory Diversion
-
-depending on congestion severity.
 
 ---
 
@@ -387,7 +379,7 @@ VisionGrid can be deployed by:
 
 ### Team Leader 
 **Mahi Gupta**
-### team member 1
+### Team member 1
 **Ayushi Kushwaha**
 ### Team Member 2
 **Siddharth Singh**
@@ -396,7 +388,7 @@ VisionGrid can be deployed by:
 
 # 🏆 Built for Gridlock Hackathon 2.0
 
-### VisionGrid — Turning Traffic Data into Intelligent Decisions.
+### EyeGrid — Turning Traffic Data into Intelligent Decisions.
 
 An AI-powered platform for forecasting congestion, optimizing resource deployment, and enabling proactive traffic management.
 
