@@ -5,16 +5,34 @@ import math
 import numpy as np
 import pandas as pd
 from datetime import datetime
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, make_response
 from flask_cors import CORS
 
 app = Flask(__name__)
+
 CORS(app, resources={r"/*": {
     "origins": "*",
     "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    "allow_headers": ["Content-Type", "Authorization", "Accept"]
+    "allow_headers": ["Content-Type", "Authorization", "Accept", "X-Requested-With", "Origin"],
+    "supports_credentials": False
 }})
 
+# SSL Proxy Guard Middleware for TLS Termination on Railway load balancers
+@app.before_request
+def handle_ssl_proxy():
+    if request.headers.get('X-Forwarded-Proto', 'http') == 'https':
+        # Tells Flask that the request came in securely
+        pass
+
+# CORS Preflight OPTIONS Global Handler
+@app.after_request
+def add_cors_headers(response):
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization, Accept, X-Requested-With, Origin"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS"
+    return response
+
+# Global In-Memory Store for Live Map Incidents
 active_incidents = [
     {
         "id": 1,
@@ -31,6 +49,7 @@ active_incidents = [
 MODEL_PATH = "catboost_traffic_model.pkl"
 model_bundle = None
 
+# Attempt to load model bundle safely
 if os.path.exists(MODEL_PATH):
     try:
         with open(MODEL_PATH, "rb") as f:
@@ -77,8 +96,12 @@ def mathematical_fallback_prediction(engineered_df):
     return final_score
 
 
-@app.route("/api/predict", methods=["POST"])
+@app.route("/api/predict", methods=["POST", "OPTIONS"])
 def predict():
+    # CORS preflight explicit response
+    if request.method == "OPTIONS":
+        return make_response(jsonify({"status": "CORS preflight OK"}), 200)
+
     try:
         data = request.get_json()
         if not data:
@@ -257,8 +280,11 @@ def predict():
         return jsonify({"error": f"Internal pipeline exception: {str(e)}"}), 500
 
 
-@app.route("/api/events", methods=["GET", "POST"])
+@app.route("/api/events", methods=["GET", "POST", "OPTIONS"])
 def manage_events():
+    if request.method == "OPTIONS":
+        return make_response(jsonify({"status": "CORS preflight OK"}), 200)
+
     if request.method == "POST":
         data = request.get_json() or {}
         new_id = len(active_incidents) + 1
