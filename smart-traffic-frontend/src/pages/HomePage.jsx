@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Circle, useMap, useMapEvents } from 'r
 import 'leaflet/dist/leaflet.css';
 
 // Dynamic production backend URL linking directly to Railway with secure wildcard origins
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://grideye-production.up.railway.app';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://grideye-production-a323.up.railway.app';
 const BANGALORE_BOUNDS = [[12.7500, 77.3500], [13.1500, 77.8500]];
 
 const getPriorityColor = (level) => {
