@@ -15,7 +15,12 @@ CORS(app, resources={r"/*": {
     "allow_headers": ["Content-Type", "Authorization", "Accept", "X-Requested-With", "Origin"],
     "supports_credentials": False
 }})
-
+@app.route("/")
+def home():
+    return {
+        "status": "running",
+        "message": "GridEye Backend is live"
+    }, 200
 # SSL Proxy Guard Middleware for TLS Termination on Railway load balancers
 @app.before_request
 def handle_ssl_proxy():
