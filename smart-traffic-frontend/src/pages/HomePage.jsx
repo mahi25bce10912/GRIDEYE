@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Circle, useMap, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
-// Dynamic production backend URL linking directly to Railway
+// Dynamic production backend URL linking directly to Railway with secure wildcard origins
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://grideye-production.up.railway.app';
 const BANGALORE_BOUNDS = [[12.7500, 77.3500], [13.1500, 77.8500]];
 
@@ -156,10 +156,13 @@ function HomePage({ setIncidents }) {
     }
 
     try {
-      // Direct integration of fetch connection pointing to Railway/Vercel config endpoints
+      // Connecting securely with Railway API domain parameters
       const response = await fetch(`${API_BASE_URL}/api/predict`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
         body: JSON.stringify(payload)
       });
 
@@ -215,7 +218,7 @@ function HomePage({ setIncidents }) {
       }
     } catch (err) {
       console.error("Inference Engine Connection Failed:", err);
-      setNetworkError(`GRID EYE CORE OFFLINE: Production inference server at ${API_BASE_URL} is unreachable.`);
+      setNetworkError(`ASTRAM CORE OFFLINE: Production inference server at ${API_BASE_URL} is unreachable.`);
     } finally {
       setIsProcessing(false);
     }
