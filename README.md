@@ -50,7 +50,7 @@ Current traffic management approaches are largely reactive and rely heavily on m
 
 ## 💡 Our Solution
 
-VisionGrid introduces an intelligent traffic management framework capable of:
+Grideye introduces an intelligent traffic management framework capable of:
 
 ✅ Predicting incident severity
 
@@ -268,7 +268,7 @@ for operational traffic management.
 
 # 📊 Decision Support Outputs
 
-VisionGrid generates the following actionable metrics:
+Grideye generates the following actionable metrics:
 
 | Metric | Description |
 |----------|-------------|
@@ -397,7 +397,7 @@ VisionGrid can be deployed by:
 
 # 🏆 Built for Gridlock Hackathon 2.0
 
-### EyeGrid — Turning Traffic Data into Intelligent Decisions.
+### Grideye — Turning Traffic Data into Intelligent Decisions.
 
 An AI-powered platform for forecasting congestion, optimizing resource deployment, and enabling proactive traffic management.
 
