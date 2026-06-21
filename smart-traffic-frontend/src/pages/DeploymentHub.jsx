@@ -30,14 +30,31 @@ function DeploymentHub() {
   });
 
   events.forEach(ev => {
-    const matchedCorridor = mainCorridors.find(c => 
-      ev.location?.toLowerCase().includes(c.toLowerCase()) || 
-      ev.name?.toLowerCase().includes(c.toLowerCase()) ||
-      (c === 'Outer Ring Road' && ev.name?.toLowerCase().includes('orr'))
-    );
-    
-    if (matchedCorridor) {
-      corridorCounts[matchedCorridor] += 1;
+    if (!ev.corridor) return;
+  
+    if (
+      ev.corridor.includes("ORR") ||
+      ev.corridor.includes("Outer Ring")
+    ) {
+      corridorCounts["Outer Ring Road"] += 1;
+    }
+    else if (ev.corridor.includes("Tumkur")) {
+      corridorCounts["Tumkur Road"] += 1;
+    }
+    else if (ev.corridor.includes("Hosur")) {
+      corridorCounts["Hosur Road"] += 1;
+    }
+    else if (ev.corridor.includes("Bellary")) {
+      corridorCounts["Bellary Road"] += 1;
+    }
+    else if (ev.corridor.includes("Old Madras")) {
+      corridorCounts["Old Madras Road"] += 1;
+    }
+    else if (ev.corridor.includes("Mysore")) {
+      corridorCounts["Mysore Road"] += 1;
+    }
+    else if (ev.corridor.includes("Bannerghata")) {
+      corridorCounts["Bannerghatta Road"] += 1;
     }
   });
 
