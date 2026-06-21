@@ -196,9 +196,10 @@ function HomePage({ setIncidents }) {
           id: Date.now(),
           name: `${formData.corridor} Anomaly`,
           location: `${parsedLat}, ${parsedLng}`,
+          corridor: formData.corridor,
           type: formData.event_type,
           cause: formData.event_cause,
-          time: loggingTimeStr 
+          time: loggingTimeStr
         };
         
         window.hub_events_list.push(newLog);
